@@ -314,7 +314,7 @@ function getFibonacciNumber(index) {
  */
 function getSumToN(n) {
   let sum = 0;
-  for (let i = 0; i <= n; i + 1) {
+  for (let i = 0; i <= n; i += 1) {
     sum += i;
   }
   return sum;
@@ -359,10 +359,10 @@ function isPowerOfTwo(num) {
   let count = 2;
   for (let i = 2; i <= num; i += 1) {
     for (let j = 2; j <= i; j += 1) {
+      if (count >= num) {
+        break;
+      }
       count *= 2;
-    }
-    if (count >= num) {
-      break;
     }
   }
   return count === num;
@@ -609,7 +609,7 @@ function getIntegerPartNumber(number) {
  */
 function getSumOfNumbers(x1, x2, x3) {
   const sum = x1 + x2 + x3;
-  return sum;
+  return Number(sum.toPrecision(1));
 }
 
 /**
@@ -641,7 +641,8 @@ function getMaxNumber(firstNumber, secondNumber) {
  * -1, 1 => -1 | 0 | 1
  */
 function getRandomInteger(min, max) {
-  return Math.floor(Math.random(min, max));
+  const num = Math.random() * (max - min + 1) + min;
+  return Math.trunc(num);
 }
 
 /**
@@ -655,7 +656,7 @@ function getRandomInteger(min, max) {
  * 3, 4 => 5
  */
 function getHypotenuse(a, b) {
-  return Math.sqrt(a ** 2 + b ** 2);
+  return Math.hypot(a, b);
 }
 
 /**
@@ -673,7 +674,7 @@ function getHypotenuse(a, b) {
  */
 function getCountOfOddNumbers(number) {
   let count = 0;
-  for (let i = 1; i <= number; i += 1) {
+  for (let i = 1; i <= Math.abs(number); i += 1) {
     if (i % 2 !== 0) {
       count += 1;
     }
